@@ -7,7 +7,47 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h1>席決めアプリ</h1>
+      <div id="conditions">
+        <div>
+          <label for="numTables">テーブル数：</label>
+          <input type="number" id="numTables" min="1">
+        </div>
+        <div>
+          <label for="tableShape">テーブルの形：</label>
+          <select id="tableShape">
+            <option value="rectangle">長方形</option>
+            <option value="square">正方形</option>
+          </select>
+        </div>
+        <div>
+          <label for="numParticipants">参加人数：</label>
+          <input type="number" id="numParticipants" min="1">
+        </div>
+        <div>
+          <label for="distance">特定の人同士を近づける：</label>
+          <div id="distance">
+            <select id="person1">
+              <option value=""></option>
+            </select>
+            と
+            <select id="person2">
+              <option value=""></option>
+            </select>
+            を
+            <select id="arrangement">
+              <option value="">隣同士にする</option>
+              <option value="">同じテーブルにする</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button>席を決める</button>
+        </div>
+
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
