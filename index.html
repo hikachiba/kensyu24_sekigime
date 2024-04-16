@@ -11,10 +11,12 @@
       <h1>席決めアプリ</h1>
       <div id="conditions">
         <div>
-          <label for="numTables">テーブル数：</label>
+          <label for="numTables">テーブル：</label>
           <input type="number" id="seatsPerTable" min="1">人掛けのテーブルが
           <input type="number" id="numTables" min="1">個
+          <button id="addTableButton">＋</button>
         </div>
+        <div id="tableForms"></div>
         <div>
           <label for="tableShape">テーブルの形：</label>
           <select id="tableShape">
