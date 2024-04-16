@@ -25,20 +25,17 @@
         <div>
           <label for="participants">参加者：</label>
           <div>
-            <input type="checkbox" name="participants" value="all">全員参加
+            <input id="checkAll" type="checkbox" name="participants" value="all">全員参加
             <div id="member"></div>
-
           </div>
 
         </div>
         <div>
           <label for="distance">特定の人同士を近づける：</label>
           <div id="distance">
-            <select id="person1">
-              <option value=""></option>
-            </select>
+            <select class="memberList person1"></select>
             と
-            <select id="person2">
+            <select class="memberList person2">
               <option value=""></option>
             </select>
             を
@@ -54,6 +51,6 @@
 
       </div>
     </div>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
