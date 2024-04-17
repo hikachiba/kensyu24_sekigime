@@ -28,7 +28,6 @@ for(let i = 0; i < employeeData.length; i++){
 }
 document.querySelector('#member').innerHTML = member;
 
-
 //参加者
 const checkAll = document.querySelector('#checkAll');
 const joinCheck = document.querySelectorAll('.joinCheck');
@@ -60,6 +59,27 @@ function checkParticipants(checkbox) {
       checkbox.classList.remove('checked');
     }
   });
+}
+
+//参加者のみを条件のプルダウンリストに表示する
+
+let setParticipantsBtn = document.querySelector('#setParticipantsBtn');
+let memberLists = document.querySelectorAll('.memberList');
+
+setParticipantsBtn.addEventListener("click", function(){
+  memberLists.forEach(function(memberList){
+      showMemberList(memberList);
+  });
+});
+
+function showMemberList(element) {
+  let pulldown = "";
+  let checked = document.querySelectorAll('.checked');
+  for(let i = 0; i < checked.length; i++){
+    console.log(checked[i].value);
+    pulldown += '<option value="' + checked[i].value + '">' + employeeData[checked[i].value] + '</option>';
+  }
+  element.innerHTML = '<option value="null"></option>' + pulldown;
 }
 
 

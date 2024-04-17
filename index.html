@@ -28,18 +28,19 @@
             <input id="checkAll" type="checkbox" name="participants" value="all">全員参加
             <div id="member"></div>
           </div>
+          <button id="setParticipantsBtn">参加者を確定する</button>
 
         </div>
         <div>
           <label for="distance">特定の人同士を近づける：</label>
           <div id="distance">
+            <div class="memberList>"></div>
             <select class="memberList person1"></select>
             と
-            <select class="memberList person2">
-              <option value=""></option>
-            </select>
+            <select class="memberList person2"></select>
             を
             <select id="arrangement">
+              <option value="null"></option>
               <option value="">隣同士にする</option>
               <option value="">同じテーブルにする</option>
             </select>
