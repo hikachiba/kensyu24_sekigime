@@ -22,10 +22,13 @@
         </div>
         <br>
         <div>
-          <label for="numTables">テーブル数：</label>
-          <input type="number" id="seatsPerTable" min="1">人掛けのテーブルが
+          <label for="seatsPerTable">テーブル：</label>
+          <input type="number" id="seatsPerTable" min="1">人掛けの
+          <label for="numTables">テーブルが</label>
           <input type="number" id="numTables" min="1">個
+          <button id="addTableButton">＋</button>
         </div>
+        <div id="tableForms"></div>
         <div>
           <label for="tableShape">テーブルの形：</label>
           <select id="tableShape">
