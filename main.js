@@ -10,9 +10,10 @@ function addTableForm() {
   const tableForm = document.createElement("div");
   tableForm.classList.add("tableForm"); 
   tableForm.innerHTML = `
-    <label for="numTables">テーブル：</label>
-    <input type="number" class="seatsPerTable" min="1">人掛けのテーブルが
-    <input type="number" class="numTables" min="1">個
+    <label for="seatsPerTable">テーブル：</label>
+    <input type="number" id="seatsPerTable" min="1">人掛けの
+    <label for="numTables">テーブルが</label>
+    <input type="number" id="numTables" min="1">個
   `;
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
