@@ -22,9 +22,9 @@ const employeeData = [
   "鈴木さん",
 ];
 
-let member = "";
+let member = '';
 for(let i = 0; i < employeeData.length; i++){
-  member += '<input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i];
+  member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
 }
 document.querySelector('#member').innerHTML = member;
 
@@ -33,7 +33,7 @@ const checkAll = document.querySelector('#checkAll');
 const joinCheck = document.querySelectorAll('.joinCheck');
 
 //全員参加にチェックをつけた場合
-checkAll.addEventListener("change", function(){
+checkAll.addEventListener('change', function(){
   let isChecked = checkAll.checked;
   joinCheck.forEach(function(checkbox) {
     checkbox.checked = isChecked;
@@ -51,7 +51,7 @@ joinCheck.forEach(function(checkbox) {
 });
 
 function checkParticipants(checkbox) {
-  checkbox.addEventListener("change", function(){
+  checkbox.addEventListener('change', function(){
     let isChecked = checkbox.checked;
     if(isChecked){
       checkbox.classList.add('checked');
@@ -62,27 +62,33 @@ function checkParticipants(checkbox) {
 }
 
 //参加者のみを条件のプルダウンリストに表示する
+const setParticipantsBtn = document.querySelector('#setParticipantsBtn');
+const distance = document.querySelector('#distance');
 
-let setParticipantsBtn = document.querySelector('#setParticipantsBtn');
-let memberLists = document.querySelectorAll('.memberList');
+setParticipantsBtn.addEventListener('click', showMemberList);
 
-setParticipantsBtn.addEventListener("click", function(){
-  memberLists.forEach(function(memberList){
-      showMemberList(memberList);
-  });
-});
+function showMemberList() {
+  let checkedValues = []; // 選択されている値を一時的に保存する配列
+  let checkedOptions = document.querySelectorAll('.memberList option:checked');
+  checkedOptions.forEach(option => checkedValues.push(option.value));
 
-function showMemberList(element) {
-  let pulldown = "";
+  let pulldown = '';
   let checked = document.querySelectorAll('.checked');
-  for(let i = 0; i < checked.length; i++){
-    console.log(checked[i].value);
-    pulldown += '<option value="' + checked[i].value + '">' + employeeData[checked[i].value] + '</option>';
-  }
-  element.innerHTML = '<option value="null"></option>' + pulldown;
+  checked.forEach(function(member) {
+    pulldown += '<option value="' + member.value + '">' + employeeData[member.value] + '</option>';
+  });
+
+
+  const newMemberList = document.querySelector('#distance').lastElementChild.querySelectorAll('.memberList');
+  newMemberList.forEach(function(element) {
+    element.innerHTML = '<option value="null"></option>' + pulldown;
+  });
 }
 
-
-
+const addDistanceBtn = document.querySelector('#addDistanceBtn');
+addDistanceBtn.addEventListener('click', function(){
+  distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
+  showMemberList();
+});
 
 

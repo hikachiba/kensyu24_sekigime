@@ -11,9 +11,11 @@
       <h1>席決めアプリ</h1>
       <div id="conditions">
         <div>
-          <label for="participants">参加者：</label>
+          <label>参加者：</label>
           <div>
-            <input id="checkAll" type="checkbox" name="participants" value="all">全員参加
+            <label for="checkAll">
+              <input id="checkAll" type="checkbox" name="participants" value="all">全員参加
+            </label>
             <div id="member"></div>
           </div>
           <button id="setParticipantsBtn">参加者を確定する</button>
@@ -31,10 +33,9 @@
             <option value="square">正方形</option>
           </select>
         </div>
-        <div>
+        <div id="distance">
           <label for="distance">特定の人同士を近づける：</label>
-          <div id="distance">
-            <div class="memberList>"></div>
+          <div>
             <select class="memberList person1"></select>
             と
             <select class="memberList person2"></select>
@@ -44,6 +45,7 @@
               <option value="">隣同士にする</option>
               <option value="">同じテーブルにする</option>
             </select>
+            <button id="addDistanceBtn">＋</button>
           </div>
         </div>
         <div>
