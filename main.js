@@ -70,7 +70,9 @@ setParticipantsBtn.addEventListener('click', showMemberList);
 function showMemberList() {
   let checkedValues = []; // 選択されている値を一時的に保存する配列
   let checkedOptions = document.querySelectorAll('.memberList option:checked');
-  checkedOptions.forEach(option => checkedValues.push(option.value));
+  checkedOptions.forEach(function(option) {
+    checkedValues.push(option.value);
+  });
 
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
@@ -78,13 +80,13 @@ function showMemberList() {
     pulldown += '<option value="' + member.value + '">' + employeeData[member.value] + '</option>';
   });
 
-
   const newMemberList = document.querySelector('#distance').lastElementChild.querySelectorAll('.memberList');
   newMemberList.forEach(function(element) {
     element.innerHTML = '<option value="null"></option>' + pulldown;
   });
 }
 
+//＋ボタンで次の行を追加
 const addDistanceBtn = document.querySelector('#addDistanceBtn');
 addDistanceBtn.addEventListener('click', function(){
   distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
