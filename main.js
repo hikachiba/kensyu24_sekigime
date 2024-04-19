@@ -116,7 +116,7 @@ function addTableForm() {
 document.querySelectorAll("#FormDataBtn").forEach(btn => {
   btn.onclick = function() {
     const formData = [];
-    formData.push(document.querySelector(".memberList").innerText);
+    formData.push(document.querySelector(".memberList").value);
     formData.push(document.querySelector("#seatsPerTable").value);
     formData.push(document.querySelector("#numTables").value);
     formData.push(document.querySelector("#tableShape").value);
