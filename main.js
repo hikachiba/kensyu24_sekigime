@@ -111,3 +111,19 @@ function addTableForm() {
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
 }
+
+//入力フォームのデータを格納
+document.querySelectorAll("#FormDataBtn").forEach(btn => {
+  btn.onclick = function() {
+    const formData = [];
+    formData.push(document.querySelector(".memberList").innerText);
+    formData.push(document.querySelector("#seatsPerTable").value);
+    formData.push(document.querySelector("#numTables").value);
+    formData.push(document.querySelector("#tableShape").value);
+    formData.push(document.querySelector(".person1").value);
+    formData.push(document.querySelector(".person2").value);
+    formData.push(document.querySelector("#arrangement").value);
+
+    console.log(formData);
+  };
+});
