@@ -68,11 +68,6 @@ const distance = document.querySelector('#distance');
 setParticipantsBtn.addEventListener('click', showMemberList);
 
 function showMemberList() {
-  let checkedValues = []; // 選択されている値を一時的に保存する配列
-  let checkedOptions = document.querySelectorAll('.memberList option:checked');
-  checkedOptions.forEach(function(option) {
-    checkedValues.push(option.value);
-  });
 
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
@@ -111,3 +106,37 @@ function addTableForm() {
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
 }
+
+//「席を決める」ボタンを押した後の処理
+const decideSeatsBtn = document.querySelector('#decideSeatsBtn');
+decideSeatsBtn.addEventListener('click', showTables);
+
+function showTables() {
+  //テーブルの定員と個数を二次元配列に格納
+  let seatsPerTable = document.querySelectorAll('#seatsPerTable');
+  let numTables = document.querySelectorAll('#numTables');
+  let numTablesList = []; 
+  for(let i = 0; i < numTables.length; i++){
+    numTablesList.push([seatsPerTable[i].value, numTables[i].value]);
+  }
+
+  //入力された定員・個数のテーブルを出力
+  let result = '';
+  for(let i = 0; i < numTablesList.length; i++){
+    for(let j = 0; j < numTablesList[i][1]; j++){
+      result += '<div class="resultTable">';
+      for(let k= 0; k < numTablesList[i][0]; k++){
+        if(k % 2 === 0){
+          result += '<span class="table">a</span>';
+        }else{
+          result += '<span class="table">a</span><br>';
+        }
+      }
+      result += '</div><br>';
+    }
+  }
+  
+  document.querySelector('#result').innerHTML = result;
+  showRandomParticipant();
+}
+
