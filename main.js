@@ -68,12 +68,6 @@ const distance = document.querySelector('#distance');
 setParticipantsBtn.addEventListener('click', showMemberList);
 
 function showMemberList() {
-  let checkedValues = []; // 選択されている値を一時的に保存する配列
-  let checkedOptions = document.querySelectorAll('.memberList option:checked');
-  checkedOptions.forEach(function(option) {
-    checkedValues.push(option.value);
-  });
-
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
   checked.forEach(function(member) {
@@ -89,7 +83,7 @@ function showMemberList() {
 //＋ボタンで次の行を追加
 const addDistanceBtn = document.querySelector('#addDistanceBtn');
 addDistanceBtn.addEventListener('click', function(){
-  distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
+  distance.insertAdjacentHTML('beforeend', '<div><select class="memberList distancePerson1"></select>と<select class="memberList distancePerson2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
   showMemberList();
 });
 
@@ -112,18 +106,45 @@ function addTableForm() {
   tableFormsContainer.appendChild(tableForm); 
 }
 
-//入力フォームのデータを格納
-document.querySelectorAll("#FormDataBtn").forEach(btn => {
+//入力フォームのデータを格納ver1
+/* document.querySelectorAll("#FormDataBtn").forEach(btn => {
   btn.onclick = function() {
     const formData = [];
-    formData.push(document.querySelector(".memberList").value);
+    formData.push(document.querySelector(".").value);
     formData.push(document.querySelector("#seatsPerTable").value);
     formData.push(document.querySelector("#numTables").value);
+    //formData.push(document.querySelector("#tableForms").value);
     formData.push(document.querySelector("#tableShape").value);
-    formData.push(document.querySelector(".person1").value);
-    formData.push(document.querySelector(".person2").value);
+    formData.push(document.querySelector(".distancePerson1").value);
+    formData.push(document.querySelector(".distancePerson2").value);
     formData.push(document.querySelector("#arrangement").value);
 
     console.log(formData);
   };
 });
+ */
+
+//入力フォームのデータを格納ver2
+document.querySelectorAll("#FormDataBtn").forEach(btn => {
+  btn.onclick = function() {
+
+    let checkMember = document.querySelectorAll('.checked');
+      let memberList = [];
+      for(let i = 0; i < checkMember.length; i++){
+        memberList.push(checkMember[i].value);
+      }
+
+    const formData = {
+      memberList: memberList,
+      seatsPerTable: document.querySelector("#seatsPerTable").value,
+      numTables: document.querySelector("#numTables").value,
+      tableShape: document.querySelector("#tableShape").value,
+      distancePerson1: document.querySelector(".distancePerson1").value,
+      distancePerson2: document.querySelector(".distancePerson2").value,
+      arrangement: document.querySelector("#arrangement").value
+    };
+
+    console.log(formData);
+  };
+});
+
