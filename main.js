@@ -68,7 +68,6 @@ const distance = document.querySelector('#distance');
 setParticipantsBtn.addEventListener('click', showMemberList);
 
 function showMemberList() {
-
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
   checked.forEach(function(member) {
@@ -127,9 +126,9 @@ function showTables() {
       result += '<div class="resultTable">';
       for(let k= 0; k < numTablesList[i][0]; k++){
         if(k % 2 === 0){
-          result += '<span class="table">a</span>';
+          result += '<span class="table">-</span>';
         }else{
-          result += '<span class="table">a</span><br>';
+          result += '<span class="table">-</span><br>';
         }
       }
       result += '</div><br>';
@@ -140,3 +139,28 @@ function showTables() {
   showRandomParticipant();
 }
 
+function showRandomParticipant() {
+  let participants = document.querySelectorAll('.checked');
+  let participantsId = [];
+  for(let i = 0; i < participants.length; i++){
+    participantsId.push(participants[i].value);
+  }
+  shuffleArray(participantsId);
+
+  let tables = document.querySelectorAll('.table');
+  if(tables.length < participantsId.length){
+    alert('座席の数が足りません。');
+  }else{
+    for(let i = 0; i < participantsId.length; i++){
+      tables[i].innerHTML = employeeData[participantsId[i]];
+    }
+  }
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
