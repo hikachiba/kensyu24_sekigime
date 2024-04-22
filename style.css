@@ -52,7 +52,7 @@ h1 {
 }*/
 
 #conditions {
-  width: 50%;
+  width: 60%;
   margin-right: 30px;
 }
 
@@ -96,7 +96,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.1s, background-color 0.1s, color 0.1s;
 }
 
 button:hover {
@@ -115,22 +115,34 @@ button:focus-visible {
   color: white;
 }
 
+.middleBtn:hover {
+  background-color: rgb(97, 97, 97);
+}
+
 .bigBtn {
   margin: 20px 0 10px 0;
   padding: 20px;
   width: 100%;
   background-color: rgb(218, 80, 75);
   color: white;
+  transition: 0.3s;
+}
+
+.bigBtn:hover {
+  background-color: rgb(175, 66, 62);
+  color: rgb(207, 207, 207);
+  transform: scale(1.01);
 }
 
 .table {
   width: 80px; 
   height: 80px; 
-  border: 1px solid black; 
+  border: 1.5px solid black; 
   display: inline-block;
   line-height: 80px;
   text-align: center;
   margin: 1.5px;
+  transition: 0.5s;
 }
 
 @media (prefers-color-scheme: light) {
@@ -143,5 +155,15 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media (max-width: 600px) {
+  #contents {
+    display: block;
+  }
+
+  #conditions {
+    width: 100%;
   }
 }

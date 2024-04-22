@@ -80,6 +80,14 @@ function showMemberList() {
   });
 }
 
+// //参加者を確定せずにプルダウンを開こうとしたらアラートを出す
+// distance.addEventListener('click', function(){
+//   let checked = document.querySelectorAll('.checked');
+//   if(checked.length === 0){
+//     alert('参加者を確定してください。');
+//   }
+// })
+
 //＋ボタンで次の行を追加
 const addDistanceBtn = document.querySelector('#addDistanceBtn');
 addDistanceBtn.addEventListener('click', function(){
@@ -139,6 +147,7 @@ function showTables() {
   showRandomParticipant();
 }
 
+//参加者をランダムに配置する
 function showRandomParticipant() {
   let participants = document.querySelectorAll('.checked');
   let participantsId = [];
