@@ -39,7 +39,7 @@
               <label for="tableShape">テーブルの形：</label>
               <select id="tableShape">
                 <option value="rectangle">長方形</option>
-                <option value="square">正方形</option>
+                <option value="square">円形</option>
               </select>
             </div>
             <hr>
@@ -56,6 +56,19 @@
                   <option value="">同じテーブルにする</option>
                 </select>
                 <button id="addDistanceBtn" class="smallBtn">＋</button>
+              </div>
+            </div>
+            <hr>
+            <div id="fixed">
+              <label for="fixed">特定の人の席を固定する：</label>
+              <div>
+                <select class="memberList fixedParticipant"></select>
+                を
+                <input type="number" class="fixedTable" min="1">
+                番目のテーブルの
+                <input type="number" class="fixedSeat" min="1">
+                番の席に固定する
+                <button id="addFixedBtn" class="smallBtn">＋</button>
               </div>
             </div>
           </div>
