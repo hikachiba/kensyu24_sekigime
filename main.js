@@ -1,32 +1,35 @@
 import './style.css'
 
-const employeeData = [
-  "中川社長",
-  "齋藤さん",
-  "加来さん",
-  "木寺さん",
-  "田上さん",
-  "下田さん",
-  "田崎さん",
-  "津田さん",
-  "羽根川さん",
-  "永盛さん",
-  "松川さん",
-  "千羽さん",
-  "松永さん",
-  "松若さん",
-  "新井さん",
-  "小林さん",
-  "金さん",
-  "千葉さん",
-  "鈴木さん",
-];
+const employeeData = []; 
 
-let member = '';
-for(let i = 0; i < employeeData.length; i++){
-  member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
+const addEmployeesBtn = document.querySelector("#addEmployeesBtn");
+addEmployeesBtn.addEventListener('click', function() {
+  addEmployees();
+  addCheck();
+});
+
+function addEmployees() {
+  const nameInputs = document.querySelectorAll(".employeeName");
+
+  nameInputs.forEach(input => {
+    const name = input.value.trim();
+
+    if (name !== "") {
+      const employee = name;
+      employeeData.push(employee);
+    }
+  });
 }
-document.querySelector('#member').innerHTML = member;
+
+function addCheck() {
+  let member = '';
+  for (let i = 0; i < employeeData.length; i++) {
+    member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
+  }
+  document.querySelector('#member').innerHTML = member;
+}
+
+console.log(employeeData);
 
 //参加者
 const checkAll = document.querySelector('#checkAll');
@@ -43,6 +46,7 @@ checkAll.addEventListener('change', function(){
       checkbox.classList.remove('checked');
     }
   });
+  console.log(joinCheck);
 });
 
 //チェックボックスにチェックがついた人を席決め対象者とする
@@ -74,6 +78,7 @@ setParticipantsBtn.addEventListener('click', function() {
 function showMemberList(query) {
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
+  console.log(checked);
   checked.forEach(function(member) {
     pulldown += '<option value="' + member.value + '">' + employeeData[member.value] + '</option>';
   });
