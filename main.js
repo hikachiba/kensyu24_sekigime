@@ -57,6 +57,10 @@ function checkParticipants(checkbox) {
       checkbox.classList.add('checked');
     }else{
       checkbox.classList.remove('checked');
+      //一人でもチェックが外れたら、「全員にチェックを入れる」のチェックも外す
+      if(checkAll.checked){
+        checkAll.checked = false;
+      }
     }
   });
 }
