@@ -106,25 +106,7 @@ function addTableForm() {
   tableFormsContainer.appendChild(tableForm); 
 }
 
-//入力フォームのデータを格納ver1
-/* document.querySelectorAll("#FormDataBtn").forEach(btn => {
-  btn.onclick = function() {
-    const formData = [];
-    formData.push(document.querySelector(".").value);
-    formData.push(document.querySelector("#seatsPerTable").value);
-    formData.push(document.querySelector("#numTables").value);
-    //formData.push(document.querySelector("#tableForms").value);
-    formData.push(document.querySelector("#tableShape").value);
-    formData.push(document.querySelector(".distancePerson1").value);
-    formData.push(document.querySelector(".distancePerson2").value);
-    formData.push(document.querySelector("#arrangement").value);
-
-    console.log(formData);
-  };
-});
- */
-
-//入力フォームのデータを格納ver2
+//入力フォームのデータを格納
 document.querySelectorAll("#FormDataBtn").forEach(btn => {
   btn.onclick = function() {
 
@@ -134,10 +116,16 @@ document.querySelectorAll("#FormDataBtn").forEach(btn => {
         memberList.push(checkMember[i].value);
       }
 
+    let seatsPerTable = document.querySelectorAll('#seatsPerTable');
+    let numTables = document.querySelectorAll('#numTables');
+      let numTablesList = []; 
+      for(let i = 0; i < numTables.length; i++){
+        numTablesList.push([seatsPerTable[i].value, numTables[i].value]);
+      }
+
     const formData = {
       memberList: memberList,
-      seatsPerTable: document.querySelector("#seatsPerTable").value,
-      numTables: document.querySelector("#numTables").value,
+      numTablesList: numTablesList,
       tableShape: document.querySelector("#tableShape").value,
       distancePerson1: document.querySelector(".distancePerson1").value,
       distancePerson2: document.querySelector(".distancePerson2").value,
@@ -147,4 +135,3 @@ document.querySelectorAll("#FormDataBtn").forEach(btn => {
     console.log(formData);
   };
 });
-
