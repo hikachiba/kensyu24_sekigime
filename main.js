@@ -1,19 +1,21 @@
 import './style.css'
 
-const employeeData = []; 
-
-const addEmployeesBtn = document.querySelector("#addEmployeesBtn");
-addEmployeesBtn.addEventListener('click', function() {
+//「追加」ボタンを押した後の処理
+var addButton = document.querySelector("#addEmployeesBtn");
+addButton.addEventListener("click", function() {
   addEmployees();
   addCheck();
+  var inputField = document.querySelector("#employeeName");
+  inputField.value = ""; 
+  inputField.focus();
 });
 
+//入力された社員名を配列に格納
+const employeeData = []; 
 function addEmployees() {
-  const nameInputs = document.querySelectorAll(".employeeName");
-
+  const nameInputs = document.querySelectorAll("#employeeName");
   nameInputs.forEach(input => {
     const name = input.value.trim();
-
     if (name !== "") {
       const employee = name;
       employeeData.push(employee);
@@ -21,6 +23,7 @@ function addEmployees() {
   });
 }
 
+//社員名にチェックボックスをつける
 function addCheck() {
   let member = '';
   for (let i = 0; i < employeeData.length; i++) {
@@ -32,27 +35,26 @@ function addCheck() {
 console.log(employeeData);
 
 //参加者
-const checkAll = document.querySelector('#checkAll');
-const joinCheck = document.querySelectorAll('.joinCheck');
+  const checkAll = document.querySelector('#checkAll');
+  const joinCheck = document.querySelectorAll('.joinCheck');
 
-//全員参加にチェックをつけた場合
-checkAll.addEventListener('change', function(){
-  let isChecked = checkAll.checked;
-  joinCheck.forEach(function(checkbox) {
-    checkbox.checked = isChecked;
-    if(isChecked){
-      checkbox.classList.add('checked');
-    }else{
-      checkbox.classList.remove('checked');
-    }
+  //全員参加にチェックをつけた場合
+  checkAll.addEventListener('change', function(){
+    let isChecked = checkAll.checked;
+    joinCheck.forEach(function(checkbox) {
+      checkbox.checked = isChecked;
+      if(isChecked){
+        checkbox.classList.add('checked');
+      }else{
+        checkbox.classList.remove('checked');
+      }
+    });
   });
-  console.log(joinCheck);
-});
 
-//チェックボックスにチェックがついた人を席決め対象者とする
-joinCheck.forEach(function(checkbox) {
-  checkParticipants(checkbox);
-});
+  //チェックボックスにチェックがついた人を席決め対象者とする
+  joinCheck.forEach(function(checkbox) {
+    checkParticipants(checkbox);
+  });
 
 function checkParticipants(checkbox) {
   checkbox.addEventListener('change', function(){
@@ -78,7 +80,6 @@ setParticipantsBtn.addEventListener('click', function() {
 function showMemberList(query) {
   let pulldown = '';
   let checked = document.querySelectorAll('.checked');
-  console.log(checked);
   checked.forEach(function(member) {
     pulldown += '<option value="' + member.value + '">' + employeeData[member.value] + '</option>';
   });
