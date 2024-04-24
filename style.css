@@ -152,9 +152,16 @@ button:focus-visible {
 }*/
 
 .resultTable {
-  padding: 10px; 
+  padding: 10px 10px 10px 4px; 
   background-color: #e6eaed;
   border-radius: 8px;
+}
+
+.seatNumber {
+  position: relative;
+  top: -28px;
+  left: 17px;
+  color: #a3a5a5;
 }
 
 .table {
@@ -164,7 +171,7 @@ button:focus-visible {
   display: inline-block;
   line-height: 80px;
   text-align: center;
-  margin: 1.5px;
+  margin: 1.5px 1.5px 1.5px 0;
   background-color: white;
   transition: 0.5s;
 }

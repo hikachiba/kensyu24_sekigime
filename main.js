@@ -148,10 +148,11 @@ function showTables() {
     for(let j = 0; j < numTablesList[i][1]; j++){
       result += '<div class="resultTable">';
       for(let k= 0; k < numTablesList[i][0]; k++){
+        let seatNummber = k + 1;
         if(k % 2 === 0){
-          result += '<span class="table">-</span>';
+          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span>';
         }else{
-          result += '<span class="table">-</span><br>';
+          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span><br>';
         }
       }
       result += '</div><br>';
