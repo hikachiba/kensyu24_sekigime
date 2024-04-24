@@ -10,8 +10,18 @@ addButton.addEventListener("click", function() {
   inputField.focus();
 });
 
-//入力された社員名を配列に格納
+//社員名を配列に格納
 const employeeData = []; 
+
+//localStorageからデータを取得する
+function getDataFromLocalStorage() {
+  const storedEmployeeData = localStorage.getItem('employeeData');
+  if (storedEmployeeData) {
+    employeeData.push(...JSON.parse(storedEmployeeData));
+  }
+}
+
+//employeeData配列に社員名を格納
 function addEmployees() {
   const nameInputs = document.querySelectorAll("#employeeName");
   nameInputs.forEach(input => {
@@ -21,7 +31,14 @@ function addEmployees() {
       employeeData.push(employee);
     }
   });
+  //localStorageに保存する
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
 }
+
+// ページ読み込み時にgetDataFromLocalStorageを呼び出す
+document.addEventListener("DOMContentLoaded", function () {
+  getDataFromLocalStorage();
+});
 
 //社員名にチェックボックスをつける
 function addCheck() {
@@ -30,9 +47,12 @@ function addCheck() {
     member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
   }
   document.querySelector('#member').innerHTML = member;
-}
 
-console.log(employeeData);
+  const joinCheck = document.querySelectorAll('.joinCheck');
+  joinCheck.forEach(function(checkbox) {
+    checkParticipants(checkbox);
+  });
+}
 
 //参加者
   const checkAll = document.querySelector('#checkAll');
@@ -41,13 +61,14 @@ console.log(employeeData);
   //全員参加にチェックをつけた場合
   checkAll.addEventListener('change', function(){
     let isChecked = checkAll.checked;
-    joinCheck.forEach(function(checkbox) {
+    document.querySelectorAll('.joinCheck').forEach(function(checkbox) {
       checkbox.checked = isChecked;
       if(isChecked){
         checkbox.classList.add('checked');
       }else{
         checkbox.classList.remove('checked');
       }
+      console.log('全員参加のチェック状態:', isChecked);
     });
   });
 
@@ -64,6 +85,7 @@ function checkParticipants(checkbox) {
     }else{
       checkbox.classList.remove('checked');
     }
+    console.log('個別のチェック状態:', isChecked, '対象:', employeeData[parseInt(checkbox.value)]);
   });
 }
 
