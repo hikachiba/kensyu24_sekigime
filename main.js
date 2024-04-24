@@ -13,14 +13,6 @@ addButton.addEventListener("click", function() {
 //社員名を配列に格納
 const employeeData = []; 
 
-//localStorageからデータを取得する
-function getDataFromLocalStorage() {
-  const storedEmployeeData = localStorage.getItem('employeeData');
-  if (storedEmployeeData) {
-    employeeData.push(...JSON.parse(storedEmployeeData));
-  }
-}
-
 //employeeData配列に社員名を格納
 function addEmployees() {
   const nameInputs = document.querySelectorAll("#employeeName");
@@ -31,14 +23,7 @@ function addEmployees() {
       employeeData.push(employee);
     }
   });
-  //localStorageに保存する
-  localStorage.setItem('employeeData', JSON.stringify(employeeData));
 }
-
-// ページ読み込み時にgetDataFromLocalStorageを呼び出す
-document.addEventListener("DOMContentLoaded", function () {
-  getDataFromLocalStorage();
-});
 
 //社員名にチェックボックスをつける
 function addCheck() {
