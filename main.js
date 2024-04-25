@@ -3,6 +3,7 @@ import './style.css'
 // ページ読み込み時にgetDataFromLocalStorageを呼び出す
 document.addEventListener("DOMContentLoaded", function () {
   getDataFromLocalStorage();
+  addCheck();
 });
 
 //「追加」ボタンを押した後の処理
@@ -14,6 +15,16 @@ addButton.addEventListener("click", function() {
   inputField.value = ""; 
   inputField.focus();
 });
+
+//「リセット」ボタンを押した後の処理
+const clearDataBtn = document.querySelector('#clearDataBtn');
+clearDataBtn.addEventListener('click', clearLocalStorage);
+
+function clearLocalStorage() {
+  localStorage.removeItem('employeeData');
+  employeeData.length = 0;
+  document.querySelector('#member').innerHTML = '';
+}
 
 //社員名を配列に格納
 const employeeData = []; 
@@ -46,7 +57,7 @@ function addEmployees() {
 function addCheck() {
   let member = '';
   for (let i = 0; i < employeeData.length; i++) {
-    member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
+    member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '<button class="deleteBtn" data-index="' + i + '">×</button></label>';
   }
   document.querySelector('#member').innerHTML = member;
 
@@ -54,6 +65,19 @@ function addCheck() {
   joinCheck.forEach(function(checkbox) {
     checkParticipants(checkbox);
   });
+
+  // 「削除」ボタン
+  const deleteButtons = document.querySelectorAll('.deleteBtn');
+  deleteButtons.forEach(function(button) {
+    button.addEventListener('click', deleteEmployee);
+  });
+}
+//名前を削除する
+function deleteEmployee(event) {
+  const index = event.target.dataset.index;
+  employeeData.splice(index, 1);
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
+  addCheck();
 }
 
 //参加者

@@ -167,3 +167,7 @@ button:focus-visible {
     width: 100%;
   }
 }
+
+.deleteBtn {
+  font-size: 10px;
+}
