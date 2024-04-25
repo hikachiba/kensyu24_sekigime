@@ -176,7 +176,6 @@ button:focus-visible {
 .tableName {
   position: relative;
   top: 40%;
-  left: 10%;
 }
 
 @media (prefers-color-scheme: light) {
