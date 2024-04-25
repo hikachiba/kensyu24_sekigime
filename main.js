@@ -234,7 +234,7 @@ function showRandomParticipants(numTablesList) {
     alert('座席の数が足りません。\n参加者数かテーブル数を変更し、再度「参加者を確定する」を押してください。');
   }else{
     for(let i = 0; i < participantsId.length; i++){
-      tables[i].insertAdjacentHTML('beforeend', '<span>' + employeeData[participantsId[i]] + '</span>');
+      tables[i].insertAdjacentHTML('beforeend', '<span class="tableName">' + employeeData[participantsId[i]] + '</span>');
     }
   }
 }
