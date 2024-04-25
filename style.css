@@ -152,28 +152,30 @@ button:focus-visible {
 }*/
 
 .resultTable {
-  padding: 10px 10px 10px 4px; 
+  
+  padding: 10px; 
   background-color: #e6eaed;
   border-radius: 8px;
 }
 
 .seatNumber {
   position: relative;
-  top: -28px;
-  left: 17px;
   color: #a3a5a5;
 }
 
 .table {
-  width: 80px; 
-  height: 80px; 
+  width: 100px; 
+  height: 100px; 
   border: 1.5px solid black; 
   display: inline-block;
-  line-height: 80px;
-  text-align: center;
-  margin: 1.5px 1.5px 1.5px 0;
+  margin: 1.5px;
+  padding: 2px;
   background-color: white;
-  transition: 0.5s;
+}
+
+.tableName {
+  position: relative;
+  top: 40%;
 }
 
 @media (prefers-color-scheme: light) {
@@ -189,7 +191,7 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 750px) {
   #contents {
     display: block;
   }
