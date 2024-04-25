@@ -26,16 +26,25 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: white;
 }
 
 header {
+  display: flex;
+  height: 50px;
   margin-bottom: 30px;
   background-color: black;
 }
 
 #contents {
-  margin: 20px;
+  margin: 30px;
   display: flex;
+}
+
+#headerIcon {
+  width: 40px;
+  height: 40px;
+  margin: 5px 20px;
 }
 
 h1 {
@@ -52,7 +61,7 @@ h1 {
 }*/
 
 #conditions {
-  width: 65%;
+  width: 60%;
   margin-right: 30px;
 }
 
@@ -82,6 +91,10 @@ h1 {
 
 .read-the-docs {
   color: #888;
+}
+
+.numberSpace {
+  width: 70px;
 }
 
 .btnContainer {
@@ -134,6 +147,23 @@ button:focus-visible {
   transform: scale(1.01);
 }
 
+/*#result {
+  margin: 0 auto;
+}*/
+
+.resultTable {
+  padding: 10px 10px 10px 4px; 
+  background-color: #e6eaed;
+  border-radius: 8px;
+}
+
+.seatNumber {
+  position: relative;
+  top: -28px;
+  left: 17px;
+  color: #a3a5a5;
+}
+
 .table {
   width: 80px; 
   height: 80px; 
@@ -141,7 +171,8 @@ button:focus-visible {
   display: inline-block;
   line-height: 80px;
   text-align: center;
-  margin: 1.5px;
+  margin: 1.5px 1.5px 1.5px 0;
+  background-color: white;
   transition: 0.5s;
 }
 
@@ -158,12 +189,17 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 690px) {
   #contents {
     display: block;
   }
 
   #conditions {
     width: 100%;
+  }
+
+  .resultTable {
+    display: inline-block;
+    margin-top: 20px;
   }
 }

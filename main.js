@@ -69,6 +69,10 @@ function checkParticipants(checkbox) {
       checkbox.classList.add('checked');
     }else{
       checkbox.classList.remove('checked');
+      //一人でもチェックが外れたら、「全員にチェックを入れる」のチェックも外す
+      if(checkAll.checked){
+        checkAll.checked = false;
+      }
     }
     console.log('個別のチェック状態:', isChecked, '対象:', employeeData[parseInt(checkbox.value)]);
   });
@@ -76,11 +80,11 @@ function checkParticipants(checkbox) {
 
 //参加者のみを条件のプルダウンリストに表示する
 const setParticipantsBtn = document.querySelector('#setParticipantsBtn');
-const distance = document.querySelector('#distance');
+// const distance = document.querySelector('#distance');
 const fixed = document.querySelector('#fixed');
 
 setParticipantsBtn.addEventListener('click', function() {
-  showMemberList(distance);
+  // showMemberList(distance);
   showMemberList(fixed);
 });
 
@@ -106,16 +110,16 @@ function showMemberList(query) {
 // })
 
 //＋ボタンで「特定の人同士を近づける」の次の行を追加
-const addDistanceBtn = document.querySelector('#addDistanceBtn');
-addDistanceBtn.addEventListener('click', function(){
-  distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
-  showMemberList(distance);
-});
+// const addDistanceBtn = document.querySelector('#addDistanceBtn');
+// addDistanceBtn.addEventListener('click', function(){
+//   distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
+//   showMemberList(distance);
+// });
 
 //＋ボタンで「特定の人を固定する」の次の行を追加
 const addFixedBtn = document.querySelector('#addFixedBtn');
 addFixedBtn.addEventListener('click', function(){
-  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を<input type="number" class="fixedTable" min="1">番目のテーブルの<input type="number" class="fixedSeat" min="1">番の席に固定する</div>');
+  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を<input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの<input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する</div>');
   showMemberList(fixed);
 });
 
@@ -130,9 +134,9 @@ function addTableForm() {
   tableForm.classList.add("tableForm"); 
   tableForm.innerHTML = `
     <label for="seatsPerTable">テーブル：</label>
-    <input type="number" id="seatsPerTable" min="1">人掛けの
+    <input type="number" class="numberSpace" id="seatsPerTable" min="1">人掛けの
     <label for="numTables">テーブルが</label>
-    <input type="number" id="numTables" min="1">個
+    <input type="number" class="numberSpace" id="numTables" min="1">個
   `;
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
@@ -157,10 +161,11 @@ function showTables() {
     for(let j = 0; j < numTablesList[i][1]; j++){
       result += '<div class="resultTable">';
       for(let k= 0; k < numTablesList[i][0]; k++){
+        let seatNummber = k + 1;
         if(k % 2 === 0){
-          result += '<span class="table">-</span>';
+          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span>';
         }else{
-          result += '<span class="table">-</span><br>';
+          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span><br>';
         }
       }
       result += '</div><br>';
@@ -186,7 +191,7 @@ function showRandomParticipants(numTablesList) {
   //席に配置する
   let tables = document.querySelectorAll('.table');
   if(tables.length < participantsId.length){
-    alert('座席の数が足りません。');
+    alert('座席の数が足りません。\n参加者数かテーブル数を変更し、再度「参加者を確定する」を押してください。');
   }else{
     for(let i = 0; i < participantsId.length; i++){
       tables[i].innerHTML = employeeData[participantsId[i]];
