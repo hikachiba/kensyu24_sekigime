@@ -201,11 +201,11 @@ function showTables() {
     for(let j = 0; j < numTablesList[i][1]; j++){
       result += '<div class="resultTable">';
       for(let k= 0; k < numTablesList[i][0]; k++){
-        let seatNummber = k + 1;
+        let seatNumber = k + 1;
         if(k % 2 === 0){
-          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span>';
+          result += '<span class="table"><span class="seatNumber">' + seatNumber +'</span></span>';
         }else{
-          result += '<span class="seatNumber">' + seatNummber + '</span><span class="table">-</span><br>';
+          result += '<span class="table"><span class="seatNumber">' + seatNumber +'</span></span></br>';
         }
       }
       result += '</div><br>';
@@ -234,7 +234,7 @@ function showRandomParticipants(numTablesList) {
     alert('座席の数が足りません。\n参加者数かテーブル数を変更し、再度「参加者を確定する」を押してください。');
   }else{
     for(let i = 0; i < participantsId.length; i++){
-      tables[i].innerHTML = employeeData[participantsId[i]];
+      tables[i].insertAdjacentHTML('beforeend', '<span>' + employeeData[participantsId[i]] + '</span>');
     }
   }
 }
