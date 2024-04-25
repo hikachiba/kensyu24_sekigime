@@ -203,3 +203,7 @@ button:focus-visible {
     margin-top: 20px;
   }
 }
+
+.deleteBtn {
+  font-size: 10px;
+}

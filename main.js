@@ -1,5 +1,11 @@
 import './style.css'
 
+// ページ読み込み時にgetDataFromLocalStorageを呼び出す
+document.addEventListener("DOMContentLoaded", function () {
+  getDataFromLocalStorage();
+  addCheck();
+});
+
 //「追加」ボタンを押した後の処理
 var addButton = document.querySelector("#addEmployeesBtn");
 addButton.addEventListener("click", function() {
@@ -10,8 +16,27 @@ addButton.addEventListener("click", function() {
   inputField.focus();
 });
 
+//「リセット」ボタンを押した後の処理
+const clearDataBtn = document.querySelector('#clearDataBtn');
+clearDataBtn.addEventListener('click', clearLocalStorage);
+
+function clearLocalStorage() {
+  localStorage.removeItem('employeeData');
+  employeeData.length = 0;
+  document.querySelector('#member').innerHTML = '';
+}
+
 //社員名を配列に格納
 const employeeData = []; 
+console.log(employeeData)
+
+//localStorageからデータを取得する
+function getDataFromLocalStorage() {
+  const storedEmployeeData = localStorage.getItem('employeeData');
+  if (storedEmployeeData) {
+    employeeData.push(...JSON.parse(storedEmployeeData));
+  }
+}
 
 //employeeData配列に社員名を格納
 function addEmployees() {
@@ -23,13 +48,15 @@ function addEmployees() {
       employeeData.push(employee);
     }
   });
+  //localStorageに保存する
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
 }
 
 //社員名にチェックボックスをつける
 function addCheck() {
   let member = '';
   for (let i = 0; i < employeeData.length; i++) {
-    member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '</label>';
+    member += '<label for="check' + i + '"><input class="joinCheck" id="check' + i + '" type="checkbox" name="participants" value=' + i + '>' + employeeData[i] + '<button class="deleteBtn" data-index="' + i + '">×</button></label>';
   }
   document.querySelector('#member').innerHTML = member;
 
@@ -37,6 +64,19 @@ function addCheck() {
   joinCheck.forEach(function(checkbox) {
     checkParticipants(checkbox);
   });
+
+  // 「削除」ボタン
+  const deleteButtons = document.querySelectorAll('.deleteBtn');
+  deleteButtons.forEach(function(button) {
+    button.addEventListener('click', deleteEmployee);
+  });
+}
+//名前を削除する
+function deleteEmployee(event) {
+  const index = event.target.dataset.index;
+  employeeData.splice(index, 1);
+  localStorage.setItem('employeeData', JSON.stringify(employeeData));
+  addCheck();
 }
 
 //参加者
