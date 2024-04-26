@@ -26,8 +26,6 @@ clearDataBtn.addEventListener('click', function(){
     }
   });
 
-
-
 //社員名を配列に格納
 const employeeData = []; 
 console.log(employeeData)
