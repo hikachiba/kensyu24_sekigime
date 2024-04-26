@@ -18,13 +18,15 @@ addButton.addEventListener("click", function() {
 
 //「リセット」ボタンを押した後の処理
 const clearDataBtn = document.querySelector('#clearDataBtn');
-clearDataBtn.addEventListener('click', clearLocalStorage);
+clearDataBtn.addEventListener('click', function(){
+  if(confirm('登録済みの名前をすべて削除しますか？')){
+      localStorage.removeItem('employeeData');
+      employeeData.length = 0;
+      document.querySelector('#member').innerHTML = '';
+    }
+  });
 
-function clearLocalStorage() {
-  localStorage.removeItem('employeeData');
-  employeeData.length = 0;
-  document.querySelector('#member').innerHTML = '';
-}
+
 
 //社員名を配列に格納
 const employeeData = []; 
