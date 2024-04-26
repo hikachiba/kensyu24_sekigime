@@ -12,6 +12,7 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "create-vite": "^5.2.3"
+    "create-vite": "^5.2.3",
+    "dom-to-image": "^2.6.0"
   }
 }

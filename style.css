@@ -112,7 +112,7 @@ button:focus-visible {
 }
 
 .bigBtn {
-  margin: 20px 0 10px 0;
+  margin: 20px 0 30px 0;
   padding: 20px;
   width: 100%;
   background-color: rgb(218, 80, 75);
@@ -124,6 +124,11 @@ button:focus-visible {
   background-color: rgb(175, 66, 62);
   color: rgb(207, 207, 207);
   transform: scale(1.01);
+}
+
+#result {
+  background-color: white;
+  padding: 30px;
 }
 
 .resultTable {
