@@ -34,46 +34,19 @@
           <div class="condition">
             <div>
               <label for="seatsPerTable">テーブル：</label>
-              <input type="number" class="numberSpace" id="seatsPerTable" min="1">人掛けの
+              <input type="number" class="numberSpace seatsPerTable" min="1">人掛けの
               <label for="numTables">テーブルが</label>
-              <input type="number" class="numberSpace" id="numTables" min="1">個
+              <input type="number" class="numberSpace numTables" min="1">個
               <button id="addTableButton" class="smallBtn">＋</button>
             </div>
             <div id="tableForms"></div>
             <hr>
-            <!-- <div id="shape">
-              <label for="tableShape">テーブルの形：</label>
-              <select id="tableShape">
-                <option value="rectangle">長方形</option>
-                <option value="square">円形</option>
-              </select>
-            </div>
-            <hr> -->
-            <!-- <div id="distance">
-              <label for="distance">特定の人同士を近づける：</label>
-              <div>
-                <select class="memberList person1"></select>
-                と
-                <select class="memberList person2"></select>
-                を
-                <select id="arrangement">
-                  <option value="null"></option>
-                  <option value="">隣同士にする</option>
-                  <option value="">同じテーブルにする</option>
-                </select>
-                <button id="addDistanceBtn" class="smallBtn">＋</button>
-              </div>
-            </div>
-            <hr> -->
             <div id="fixed">
               <label for="fixed">特定の人の席を固定する：</label>
               <div>
-                <select class="memberList fixedParticipant"></select>
-                を
-                <input type="number" class="fixedTable numberSpace" min="1">
-                番目のテーブルの
-                <input type="number" class="fixedSeat numberSpace" min="1">
-                番の席に固定する
+                <select class="memberList fixedParticipant"></select>を
+                <input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの
+                <input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する
                 <button id="addFixedBtn" class="smallBtn">＋</button>
               </div>
             </div>

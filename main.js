@@ -18,13 +18,13 @@ addButton.addEventListener("click", function() {
 
 //「リセット」ボタンを押した後の処理
 const clearDataBtn = document.querySelector('#clearDataBtn');
-clearDataBtn.addEventListener('click', clearLocalStorage);
-
-function clearLocalStorage() {
-  localStorage.removeItem('employeeData');
-  employeeData.length = 0;
-  document.querySelector('#member').innerHTML = '';
-}
+clearDataBtn.addEventListener('click', function(){
+  if(confirm('登録済みの名前をすべて削除しますか？')){
+      localStorage.removeItem('employeeData');
+      employeeData.length = 0;
+      document.querySelector('#member').innerHTML = '';
+    }
+  });
 
 //社員名を配列に格納
 const employeeData = []; 
@@ -120,11 +120,9 @@ function checkParticipants(checkbox) {
 
 //参加者のみを条件のプルダウンリストに表示する
 const setParticipantsBtn = document.querySelector('#setParticipantsBtn');
-// const distance = document.querySelector('#distance');
 const fixed = document.querySelector('#fixed');
 
 setParticipantsBtn.addEventListener('click', function() {
-  // showMemberList(distance);
   showMemberList(fixed);
 });
 
@@ -141,25 +139,10 @@ function showMemberList(query) {
   });
 }
 
-// //参加者を確定せずにプルダウンを開こうとしたらアラートを出す
-// distance.addEventListener('click', function(){
-//   let checked = document.querySelectorAll('.checked');
-//   if(checked.length === 0){
-//     alert('参加者を確定してください。');
-//   }
-// })
-
-//＋ボタンで「特定の人同士を近づける」の次の行を追加
-// const addDistanceBtn = document.querySelector('#addDistanceBtn');
-// addDistanceBtn.addEventListener('click', function(){
-//   distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
-//   showMemberList(distance);
-// });
-
 //＋ボタンで「特定の人を固定する」の次の行を追加
 const addFixedBtn = document.querySelector('#addFixedBtn');
 addFixedBtn.addEventListener('click', function(){
-  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を<input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの<input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する</div>');
+  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を&nbsp;<input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの&nbsp;<input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する</div>');
   showMemberList(fixed);
 });
 
@@ -174,9 +157,9 @@ function addTableForm() {
   tableForm.classList.add("tableForm"); 
   tableForm.innerHTML = `
     <label for="seatsPerTable">テーブル：</label>
-    <input type="number" class="numberSpace" id="seatsPerTable" min="1">人掛けの
+    <input type="number" class="numberSpace seatsPerTable" min="1">人掛けの
     <label for="numTables">テーブルが</label>
-    <input type="number" class="numberSpace" id="numTables" min="1">個
+    <input type="number" class="numberSpace numTables" min="1">個
   `;
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
@@ -188,8 +171,8 @@ decideSeatsBtn.addEventListener('click', showTables);
 
 function showTables() {
   //テーブルの定員と個数を二次元配列に格納
-  let seatsPerTable = document.querySelectorAll('#seatsPerTable');
-  let numTables = document.querySelectorAll('#numTables');
+  let seatsPerTable = document.querySelectorAll('.seatsPerTable');
+  let numTables = document.querySelectorAll('.numTables');
   let numTablesList = []; 
   for(let i = 0; i < numTables.length; i++){
     numTablesList.push([seatsPerTable[i].value, numTables[i].value]);
@@ -225,7 +208,6 @@ function showRandomParticipants(numTablesList) {
     participantsId.push(participants[i].value);
   }
   shuffleArray(participantsId);
-  //console.log(participantsId);
   fixParticipants(participantsId, numTablesList);
 
   //席に配置する
@@ -278,5 +260,4 @@ function fixParticipants(array, numTablesList) {
     array[participantIndex] = array[seatIndex];
     array[seatIndex] = temp;
   }
-  //console.log(array);
 }
