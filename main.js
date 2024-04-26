@@ -1,4 +1,5 @@
 import './style.css'
+import domtoimage from 'dom-to-image';
 
 // ページ読み込み時にgetDataFromLocalStorageを呼び出す
 document.addEventListener("DOMContentLoaded", function () {
@@ -261,3 +262,17 @@ function fixParticipants(array, numTablesList) {
     array[seatIndex] = temp;
   }
 }
+
+//結果を画像としてダウンロードする
+const downloadResultBtn = document.querySelector('#downloadResultBtn');
+downloadResultBtn.addEventListener('click', async function(){
+  const resultData = document.querySelector('#result');
+  const dl = document.createElement("a");
+  const imageUrl = await domtoimage.toPng(resultData, {
+    width: resultData.clientWidth,
+    height: resultData.clientHeight
+  });
+  dl.href = imageUrl;
+  dl.download = "savefile.png";
+  dl.click();
+});
