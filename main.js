@@ -157,9 +157,9 @@ function addTableForm() {
   tableForm.classList.add("tableForm"); 
   tableForm.innerHTML = `
     <label for="seatsPerTable">テーブル：</label>
-    <input type="number" class="numberSpace" id="seatsPerTable" min="1">人掛けの
+    <input type="number" class="numberSpace seatsPerTable" min="1">人掛けの
     <label for="numTables">テーブルが</label>
-    <input type="number" class="numberSpace" id="numTables" min="1">個
+    <input type="number" class="numberSpace numTables" min="1">個
   `;
   const tableFormsContainer = document.getElementById("tableForms");
   tableFormsContainer.appendChild(tableForm); 
@@ -171,8 +171,8 @@ decideSeatsBtn.addEventListener('click', showTables);
 
 function showTables() {
   //テーブルの定員と個数を二次元配列に格納
-  let seatsPerTable = document.querySelectorAll('#seatsPerTable');
-  let numTables = document.querySelectorAll('#numTables');
+  let seatsPerTable = document.querySelectorAll('.seatsPerTable');
+  let numTables = document.querySelectorAll('.numTables');
   let numTablesList = []; 
   for(let i = 0; i < numTables.length; i++){
     numTablesList.push([seatsPerTable[i].value, numTables[i].value]);
