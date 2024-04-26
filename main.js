@@ -120,11 +120,9 @@ function checkParticipants(checkbox) {
 
 //参加者のみを条件のプルダウンリストに表示する
 const setParticipantsBtn = document.querySelector('#setParticipantsBtn');
-// const distance = document.querySelector('#distance');
 const fixed = document.querySelector('#fixed');
 
 setParticipantsBtn.addEventListener('click', function() {
-  // showMemberList(distance);
   showMemberList(fixed);
 });
 
@@ -140,21 +138,6 @@ function showMemberList(query) {
     element.innerHTML = '<option value="null"></option>' + pulldown;
   });
 }
-
-// //参加者を確定せずにプルダウンを開こうとしたらアラートを出す
-// distance.addEventListener('click', function(){
-//   let checked = document.querySelectorAll('.checked');
-//   if(checked.length === 0){
-//     alert('参加者を確定してください。');
-//   }
-// })
-
-//＋ボタンで「特定の人同士を近づける」の次の行を追加
-// const addDistanceBtn = document.querySelector('#addDistanceBtn');
-// addDistanceBtn.addEventListener('click', function(){
-//   distance.insertAdjacentHTML('beforeend', '<div><select class="memberList person1"></select>と<select class="memberList person2"></select>を<select id="arrangement"><option value="null"></option><option value="">隣同士にする</option><option value="">同じテーブルにする</option></select></div>');
-//   showMemberList(distance);
-// });
 
 //＋ボタンで「特定の人を固定する」の次の行を追加
 const addFixedBtn = document.querySelector('#addFixedBtn');
@@ -225,7 +208,6 @@ function showRandomParticipants(numTablesList) {
     participantsId.push(participants[i].value);
   }
   shuffleArray(participantsId);
-  //console.log(participantsId);
   fixParticipants(participantsId, numTablesList);
 
   //席に配置する
@@ -278,5 +260,4 @@ function fixParticipants(array, numTablesList) {
     array[participantIndex] = array[seatIndex];
     array[seatIndex] = temp;
   }
-  //console.log(array);
 }
