@@ -159,7 +159,7 @@ function showMemberList(query) {
 //＋ボタンで「特定の人を固定する」の次の行を追加
 const addFixedBtn = document.querySelector('#addFixedBtn');
 addFixedBtn.addEventListener('click', function(){
-  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を<input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの<input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する</div>');
+  fixed.insertAdjacentHTML('beforeend', '<div><select class="memberList fixedParticipant"></select>を&nbsp;<input type="number" class="fixedTable numberSpace" min="1">番目のテーブルの&nbsp;<input type="number" class="fixedSeat numberSpace" min="1">番の席に固定する</div>');
   showMemberList(fixed);
 });
 
